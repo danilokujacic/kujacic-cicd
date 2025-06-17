@@ -31,6 +31,7 @@ jobs:
           npm run test
           npm run lint
   deploy:
+    needs: test
     name: deploy
     runs-on: ubuntu-latest
     steps:
