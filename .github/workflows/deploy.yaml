@@ -62,4 +62,13 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.KEY }}
           script: |
+            cd /var/www/my-angular-app
+
+            git checkout main
+            git reset --hard HEAD
+            git pull
+            npm ci
+            npm run build
+            mkdir browser
+            mv ./dist/browser ./browser
             exit
