@@ -64,6 +64,12 @@ jobs:
           script: |
             cd /var/www/my-angular-app
 
+            # Use nvm to install and use Node.js v23.2.0 on the server
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load nvm
+            nvm install v23.8.0
+            nvm use v23.8.0
+
             git checkout main
             git reset --hard HEAD
             git pull
