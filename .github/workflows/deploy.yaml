@@ -80,5 +80,5 @@ jobs:
 
             rm -r browser 
             mkdir browser
-            mv -r ./dist/kujacic-cicd/browser ./browser
+            mv ./dist/kujacic-cicd/browser/* ./browser
             exit
