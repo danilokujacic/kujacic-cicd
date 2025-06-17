@@ -77,6 +77,8 @@ jobs:
             npm -v
             npm ci
             npm run build
+
+            rm -r browser 
             mkdir browser
-            mv ./dist/browser ./browser
+            mv -r ./dist/kujacic-cicd/browser ./browser
             exit
