@@ -9,7 +9,7 @@ jobs:
   test:
     name: test
     runs-on: ubuntu-latest
-    uses: .github/workflows/reusable.yml
+    uses: ./.github/workflows/reusable.yml
     steps:
       - name: Lint and test
         run: |
