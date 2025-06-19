@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: build
-    uses: ./.github/workflows/reusable.yml
+    uses: ./.github/workflows/reusable.yaml
   test:
     needs: build
     name: test
