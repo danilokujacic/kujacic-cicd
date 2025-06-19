@@ -9,7 +9,7 @@ jobs:
   test:
     name: test
     runs-on: ubuntu-latest
-    uses: ./github/reusable
+    uses: ./github/reusable@latest
     steps:
       - name: Lint and test
         run: |
