@@ -9,25 +9,8 @@ jobs:
   test:
     name: test
     runs-on: ubuntu-latest
+    uses: ./github/reusable
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Install node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: Cache
-        uses: actions/cache@v4
-        id: cache
-        with:
-          path: |
-            node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
       - name: Lint and test
         run: |
           npm run test -- --watch=false
