@@ -6,42 +6,23 @@ on:
       - main
 
 jobs:
+  build:
+    name: build
+    uses: ./.github/workflows/reusable.yml
   test:
+    needs: build
     name: test
     runs-on: ubuntu-latest
-    uses: ./.github/workflows/reusable.yml
     steps:
       - name: Lint and test
         run: |
           npm run test -- --watch=false
           npm run lint
   deploy:
-    needs: test
+    needs: [build, test]
     name: deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Install node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: Cache
-        uses: actions/cache@v4
-        id: cache
-        with:
-          path: |
-            node_modules
-            .angular/cache
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
-      - name: Build
-        run: |
-          npm run build
       - name: Execute SSH connection
         uses: appleboy/ssh-action@v1
         with:
